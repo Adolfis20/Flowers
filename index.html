@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flor Creciente</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            overflow: hidden;
+            position: relative;
+            font-family: Arial, sans-serif;
+        }
+        .flower {
+            position: absolute;
+            transition: all 1s ease;
+        }
+        .stem {
+            width: 10px;
+            height: 100px;
+            background-color: green;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .petals {
+            display: none;
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: red;
+            border-radius: 50%;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .bee {
+            display: none;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: url('https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-bee-insects-flaticons-lineal-color-flat-icons.png') no-repeat center center;
+            background-size: contain;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .message {
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="flower" class="flower"></div>
+    <div id="message" class="message">Te amo Heather</div>
+    <script>
+        let clickCount = 0;
+
+        function createFlower(x, y) {
+            clickCount++;
+            const flower = document.getElementById('flower');
+
+            if (clickCount === 1) {
+                // Tallo
+                const stem = document.createElement('div');
+                stem.className = 'stem';
+                flower.appendChild(stem);
+            } else if (clickCount === 2) {
+                // Pétalos
+                const petals = document.createElement('div');
+                petals.className = 'petals';
+                flower.appendChild(petals);
+            } else if (clickCount === 3) {
+                // Abeja
+                const bee = document.createElement('div');
+                bee.className = 'bee';
+                flower.appendChild(bee);
+            } else if (clickCount === 4) {
+                // Mensaje
+                document.getElementById('message').style.display = 'block';
+            }
+        }
+
+        document.body.addEventListener('click', (event) => {
+            createFlower(event.clientX, event.clientY);
+        });
+    </script>
+</body>
+</html>
+
